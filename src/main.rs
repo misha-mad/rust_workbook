@@ -6,13 +6,21 @@ fn main() {
     // Project selection
     println!("Please input the task ID.");
     let mut id = String::new();
-
     io::stdin().read_line(&mut id).expect("Failed to read line");
 
-    if id.contains('1') {
-        hello();
-    } else if id.contains('2') {
-        guessing_game();
+    let id: u32 = match id.trim().parse() {
+        Ok(num) => num,
+        Err(_) => {
+            println!("Please input a valid task ID.");
+            return;
+        }
+    };
+
+    match id {
+        1 => hello(),
+        2 => guessing_game(),
+        3 => fahrenheit_to_celsius(),
+        _ => println!("There is no such project."),
     }
 
     // Project "Hello, world!"
@@ -49,5 +57,27 @@ fn main() {
                 }
             }
         }
+    }
+
+    // Project "Fahrenheit to celsius"
+    fn fahrenheit_to_celsius() {
+        println!("Convert Fahrenheit to Celsius.");
+        println!("Please input the temperature in Fahrenheit.");
+        let mut fahrenheit = String::new();
+
+        io::stdin()
+            .read_line(&mut fahrenheit)
+            .expect("Failed to read line");
+
+        let fahrenheit: f64 = match fahrenheit.trim().parse() {
+            Ok(num) => num,
+            Err(_) => {
+                println!("Please input a valid temperature.");
+                return;
+            }
+        };
+
+        let celsius = (fahrenheit - 32.0) * 5.0 / 9.0;
+        println!("{fahrenheit} degrees Fahrenheit is equal to {celsius} degrees Celsius.");
     }
 }
