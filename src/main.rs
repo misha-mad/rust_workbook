@@ -1,15 +1,13 @@
-use std::io;
-use std::cmp::Ordering;
 use rand::Rng;
+use std::cmp::Ordering;
+use std::io;
 
 fn main() {
     // Project selection
     println!("Please input the task ID.");
     let mut id = String::new();
 
-    io::stdin()
-        .read_line(&mut id)
-        .expect("Failed to read line");
+    io::stdin().read_line(&mut id).expect("Failed to read line");
 
     if id.contains('1') {
         hello();
