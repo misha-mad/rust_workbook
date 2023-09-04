@@ -21,6 +21,7 @@ fn main() {
         2 => guessing_game(),
         3 => fahrenheit_to_celsius(),
         4 => fibonacci(),
+        5 => first_word(),
         _ => println!("There is no such project."),
     }
 
@@ -48,7 +49,8 @@ fn main() {
 
         print_hello(&name);
 
-        // After passing the name reference to the function, the name variable is not moved and remains available
+        // After passing the name reference to the function,
+        // the name variable is not moved and remains available
         println!("Have a good day, {}.", name)
     }
 
@@ -135,5 +137,29 @@ fn main() {
 
         let result = fibonacci_str.join(", ");
         println!("Fibonacci sequence: {:?}", result);
+    }
+
+    // Project "First word"
+    fn first_word() {
+        println!("Return a first word.");
+        println!("Please input some string.");
+
+        let mut n = String::new();
+        io::stdin().read_line(&mut n).expect("Failed to read line");
+
+        fn word(s: &String) -> &str {
+            let bytes = s.as_bytes();
+
+            for (i, &item) in bytes.iter().enumerate() {
+                if item == b' ' {
+                    return &s[0..i];
+                }
+            }
+
+            &s[..]
+        }
+
+        let result = word(&n);
+        println!("The first word is: {}", result);
     }
 }
