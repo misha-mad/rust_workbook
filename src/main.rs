@@ -1,6 +1,7 @@
 use rand::Rng;
 use std::cmp::Ordering;
 use std::io;
+use std::process::exit;
 
 fn main() {
     // Project selection
@@ -22,6 +23,7 @@ fn main() {
         3 => fahrenheit_to_celsius(),
         4 => fibonacci(),
         5 => first_word(),
+        6 => rectangle_area(),
         _ => println!("There is no such project."),
     }
 
@@ -161,5 +163,47 @@ fn main() {
 
         let result = word(&n);
         println!("The first word is: {}", result);
+    }
+
+    // Project "The area of the rectangle"
+    fn rectangle_area() {
+        struct Rectangle {
+            width: u32,
+            height: u32,
+        }
+
+        println!("The area of the rectangle.");
+        println!("Please input the width of the rectangle.");
+        let mut width = String::new();
+
+        io::stdin()
+            .read_line(&mut width)
+            .expect("Failed to read line");
+
+        let width: u32 = match width.trim().parse() {
+            Ok(num) => num,
+            Err(_) => exit(1),
+        };
+
+        println!("Please input the height of the rectangle.");
+        let mut height = String::new();
+
+        io::stdin()
+            .read_line(&mut height)
+            .expect("Failed to read line");
+
+        let height: u32 = match height.trim().parse() {
+            Ok(num) => num,
+            Err(_) => exit(1),
+        };
+
+        let rect = Rectangle { width, height };
+
+        fn area(rect: &Rectangle) -> u32 {
+            rect.width * rect.height
+        }
+
+        let result = area(&rect);
+        println!("The area of the triangle is: {}", result);
     }
 }
