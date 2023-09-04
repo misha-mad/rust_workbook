@@ -26,7 +26,10 @@ fn main() {
 
     // Project "Hello, world!"
     fn hello() {
-        println!("Hello, world!");
+        let mut string = String::from("   Hello");
+        string.push_str(", world");
+        string.push('!');
+        println!("{}", string.trim());
     }
 
     // Project "Guessing game"
