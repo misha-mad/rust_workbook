@@ -172,6 +172,12 @@ fn main() {
             height: u32,
         }
 
+        impl Rectangle {
+            fn area(&self) -> u32 {
+                self.width * self.height
+            }
+        }
+
         println!("The area of the rectangle.");
         println!("Please input the width of the rectangle.");
         let mut width = String::new();
@@ -198,12 +204,7 @@ fn main() {
         };
 
         let rect = Rectangle { width, height };
-
-        fn area(rect: &Rectangle) -> u32 {
-            rect.width * rect.height
-        }
-
-        let result = area(&rect);
+        let result = rect.area();
         println!("The area of the triangle is: {}", result);
     }
 }
