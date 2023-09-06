@@ -1,9 +1,8 @@
-use projects::fahrenheit_to_celsius::fahrenheit_to_celsius;
-use projects::fibonacci::fibonacci;
-use projects::first_word::first_word;
-use projects::guessing_game::guessing_game;
-use projects::hello::hello;
-use projects::rectangle_area::rectangle_area;
+use projects::{
+    fahrenheit_to_celsius::fahrenheit_to_celsius, fibonacci::fibonacci, first_word::first_word,
+    guessing_game::guessing_game, hello::hello, rectangle_area::rectangle_area,
+};
+
 use std::io;
 
 pub mod projects;
