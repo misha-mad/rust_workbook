@@ -24,21 +24,24 @@ pub fn first_word() {
     println!("The first word is: {}", result);
 }
 
-#[test]
-fn first_word_test() {
-    fn word(s: &String) -> &str {
-        let bytes = s.as_bytes();
+#[cfg(test)]
+mod first_word_test {
+    #[test]
+    fn first_word_test() {
+        fn word(s: &String) -> &str {
+            let bytes = s.as_bytes();
 
-        for (i, &item) in bytes.iter().enumerate() {
-            if item == b' ' {
-                return &s[0..i];
+            for (i, &item) in bytes.iter().enumerate() {
+                if item == b' ' {
+                    return &s[0..i];
+                }
             }
+
+            &s[..]
         }
 
-        &s[..]
+        let n = String::from("Hello, world!");
+        let result = word(&n);
+        assert_eq!(result, "Hello,");
     }
-
-    let n = String::from("Hello, world!");
-    let result = word(&n);
-    assert_eq!(result, "Hello,");
 }

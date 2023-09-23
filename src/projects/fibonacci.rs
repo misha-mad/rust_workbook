@@ -32,20 +32,23 @@ pub fn fibonacci() {
     println!("Fibonacci sequence: {:?}", result);
 }
 
-#[test]
-fn fibonacci_test() {
-    let mut fibonacci_numbers: Vec<u32> = vec![0, 1];
+#[cfg(test)]
+mod fibonacci_test {
+    #[test]
+    fn fibonacci_test() {
+        let mut fibonacci_numbers: Vec<u32> = vec![0, 1];
 
-    for i in 2..10 {
-        let next = &fibonacci_numbers[&i - 1] + &fibonacci_numbers[&i - 2];
-        fibonacci_numbers.push(next);
+        for i in 2..10 {
+            let next = &fibonacci_numbers[&i - 1] + &fibonacci_numbers[&i - 2];
+            fibonacci_numbers.push(next);
+        }
+
+        let fibonacci_str: Vec<String> = fibonacci_numbers
+            .iter()
+            .map(|num| num.to_string())
+            .collect();
+
+        let result = fibonacci_str.join(", ");
+        assert_eq!(result, "0, 1, 1, 2, 3, 5, 8, 13, 21, 34");
     }
-
-    let fibonacci_str: Vec<String> = fibonacci_numbers
-        .iter()
-        .map(|num| num.to_string())
-        .collect();
-
-    let result = fibonacci_str.join(", ");
-    assert_eq!(result, "0, 1, 1, 2, 3, 5, 8, 13, 21, 34");
 }

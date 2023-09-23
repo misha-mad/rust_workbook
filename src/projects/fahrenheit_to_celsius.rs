@@ -22,9 +22,12 @@ pub fn fahrenheit_to_celsius() {
     println!("{fahrenheit} degrees Fahrenheit is equal to {celsius} degrees Celsius.");
 }
 
-#[test]
-fn fahrenheit_to_celsius_test() {
-    let fahrenheit = 32.0;
-    let celsius = (fahrenheit - 32.0) * 5.0 / 9.0;
-    assert_eq!(celsius, 0.0);
+#[cfg(test)]
+mod fahrenheit_to_celsius_test {
+    #[test]
+    fn fahrenheit_to_celsius_test() {
+        let fahrenheit = 32.0;
+        let celsius = (fahrenheit - 32.0) * 5.0 / 9.0;
+        assert_eq!(celsius, 0.0);
+    }
 }

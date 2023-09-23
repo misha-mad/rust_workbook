@@ -44,24 +44,27 @@ pub fn rectangle_area() {
     println!("The area of the triangle is: {}", result);
 }
 
-#[test]
-fn rectangle_area_test() {
-    struct Rectangle {
-        width: u32,
-        height: u32,
-    }
-
-    impl Rectangle {
-        fn area(&self) -> u32 {
-            self.width * self.height
+#[cfg(test)]
+mod rectangle_area_test {
+    #[test]
+    fn rectangle_area_test() {
+        struct Rectangle {
+            width: u32,
+            height: u32,
         }
+
+        impl Rectangle {
+            fn area(&self) -> u32 {
+                self.width * self.height
+            }
+        }
+
+        let rect = Rectangle {
+            width: 10,
+            height: 20,
+        };
+
+        let result = rect.area();
+        assert_eq!(result, 200);
     }
-
-    let rect = Rectangle {
-        width: 10,
-        height: 20,
-    };
-
-    let result = rect.area();
-    assert_eq!(result, 200);
 }
