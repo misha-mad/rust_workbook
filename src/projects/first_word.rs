@@ -40,5 +40,5 @@ fn first_word_test() {
 
     let n = String::from("Hello, world!");
     let result = word(&n);
-    assert_eq!(result, "Hello,zdv");
+    assert_eq!(result, "Hello,");
 }
