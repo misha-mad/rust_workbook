@@ -23,3 +23,22 @@ pub fn first_word() {
     let result = word(&n);
     println!("The first word is: {}", result);
 }
+
+#[test]
+fn first_word_test() {
+    fn word(s: &String) -> &str {
+        let bytes = s.as_bytes();
+
+        for (i, &item) in bytes.iter().enumerate() {
+            if item == b' ' {
+                return &s[0..i];
+            }
+        }
+
+        &s[..]
+    }
+
+    let n = String::from("Hello, world!");
+    let result = word(&n);
+    assert_eq!(result, "Hello,");
+}

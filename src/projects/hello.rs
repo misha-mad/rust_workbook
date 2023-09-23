@@ -23,8 +23,14 @@ pub fn hello() {
     }
 
     print_hello(&name);
-
-    // After passing the name reference to the function,
-    // the name variable is not moved and remains available
     println!("Have a good day, {}.", name)
+}
+
+#[test]
+fn hello_test() {
+    let name = "world".to_owned();
+    let mut string = String::from("Hello, ");
+    string.push_str(&name);
+    string.push('!');
+    assert_eq!(string, "Hello, world!");
 }

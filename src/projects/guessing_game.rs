@@ -47,3 +47,29 @@ pub fn guessing_game() {
         }
     }
 }
+
+#[test]
+fn guessing_game_test() {
+    #[derive(Debug)]
+    pub struct Guess {
+        value: i32,
+    }
+
+    impl Guess {
+        pub fn new(value: i32) -> Guess {
+            if value < 1 || value > 100 {
+                panic!("Guess value must be between 1 and 100, got {}.", value);
+            }
+
+            Guess { value }
+        }
+
+        pub fn value(&self) -> i32 {
+            self.value
+        }
+    }
+
+    let secret_number = rand::thread_rng().gen_range(1..=100);
+    let guess = Guess::new(secret_number);
+    assert_eq!(guess.value(), secret_number);
+}
