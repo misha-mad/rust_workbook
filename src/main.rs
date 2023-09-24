@@ -11,7 +11,12 @@ pub mod projects;
 fn main() {
     let args: Vec<String> = env::args().collect();
 
-    if args.len() < 3 {
+    if args.len() == 1 {
+        println!("Please use numbers from 1 to 7 as arguments.\nOr use 2 arguments: a  search string as the first argument and a file path as the second argument.");
+        std::process::exit(0);
+    }
+
+    if args.len() == 2 {
         let project_index = args[1].as_str();
 
         match project_index {
@@ -27,7 +32,14 @@ fn main() {
                 std::process::exit(0);
             }
         };
-    } else {
+    }
+
+    if args.len() == 3 {
         grep::grep();
+    }
+
+    if args.len() > 3 {
+        println!("Too many arguments. Please use numbers from 1 to 7 as arguments.\nOr use 2 arguments: a  search string as the first argument and a file path as the second argument.");
+        std::process::exit(0);
     }
 }
