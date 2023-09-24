@@ -6,17 +6,22 @@ jobs:
   clippy_check:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
-      - id: component
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Install nightly component
+        id: component
         uses: actions-rs/components-nightly@v1
         with:
           component: clippy
-      - uses: actions-rs/toolchain@v1
+      - name: Install toolchain
+        uses: actions-rs/toolchain@v1
         with:
           toolchain: ${{ steps.component.outputs.toolchain }}
           override: true
-      - run: rustup component add clippy
-      - uses: actions-rs/clippy-check@v1
+      - name: Install clippy
+        run: rustup component add clippy
+      - name: Clippy check
+        uses: actions-rs/clippy-check@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           args: --all-features
